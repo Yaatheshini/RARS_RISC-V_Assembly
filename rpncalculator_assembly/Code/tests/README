@@ -1,0 +1,13 @@
+
+The correct answers for these tests provided are as follows:
+
+testfile.bin:  3
+NelsonTest.bin: 84
+NelsonTest2.bin: -33
+
+If you have a .bin file you can generate the .txt file running the following command on a linux machine:
+
+hexdump -v -e '2/2 "%04X " "\n"' <input_file>.bin | awk 'BEGIN{printf "obase=10; ibase=16; "}{printf "hex="; printf $2$1; print "; if (hex > 7FFFFFFF) {hex=(100000000-hex)*-1}; hex;"}' | bc > <output_file>.txt
+
+replacing <input_file> with the name of the .bin file that you want to convert and <output_file> with the name of the file where you want the output to be (likely the same name as the .bin file).
+

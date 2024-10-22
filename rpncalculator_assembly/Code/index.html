@@ -1,0 +1,137 @@
+<!-- saved from url=(0042)https://cmput229.github.io/229-labs-RISCV/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<noscript>
+	<meta http-equiv="refresh" content="0;url=noscript.html">
+</noscript>
+<title>CMPUT 229</title>
+
+
+<script src="../../css_files/jquery.min.js.download"></script>
+<script src="../../css_files/jquery-ui.min.js.download"></script>
+<script src="../../css_files/bootstrap.min.js.download"></script>
+<script src="../../css_files/main.js.download"></script>
+
+<link href="../../css_files/bootstrap.min.css" rel="stylesheet">
+<link href="../../css_files/custom.css" rel="stylesheet">
+<link href="../../css_files/font-awesome.min.css" rel="stylesheet">
+<link href="../../css_files/jquery-ui.min.css" rel="stylesheet">
+
+</head>
+<body><div id="StayFocusd-infobar" style="display: none; top: 200px;">
+    <img src="chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/common/img/eye_19x19_red.png">
+    <span id="StayFocusd-infobar-msg"></span>
+    <span id="StayFocusd-infobar-links">
+        <a id="StayFocusd-infobar-never-show">hide forever</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a id="StayFocusd-infobar-hide">hide once</a>
+    </span>
+</div>
+
+
+  <div class="banner container-fluid">
+    <div class="container banner-logo">
+      <a href="http://www.ualberta.ca/"><img src="../../css_files/logo-reverse.png"></a>
+    </div>
+    </div>
+
+    <div class="container-fluid">
+<h2 class="greentext">Generation of Test Cases for the Lab RPN Calculator</h1>
+
+
+<p>To generate a test case write the representation of an input token list into a .txt file, with the following guidelines for each file:
+      <ul>
+        <li>All expressions written must be in postfix ordering. </li>
+        <li>Each token must be on a newline. </li>
+        <li>The last token must be the sentinel -3. </li>
+        <li>All operands must be positive values. </li>
+        <li>Only the operators + (represented as -1) and - (represented as -2) are permitted. </li>
+        <li>There must be at least two operands before the first operator. </li>
+        <li>The ratio of operators to operands must assure that the stack only contains one value upon program termination. </li>
+      </ul>
+      </p>
+      
+For example the valid postfix ordered test case from the infix notation “1 - 2” would be:<br>
+<code>
+1 <br>
+2 <br>
+-2 <br>
+-3 <br>
+</code>
+      
+<p>Generated tests should go in the <code>tests</code> directory.</p> 
+
+      <h3 class="greentext">Obtaining files and Execution Permission</h3>
+
+      <p> The files needed for these instructions are in the <code>Code</code> folder in the git repo that you should clone from GitHub Classroom to start this lab.</p>
+      
+<p> For the next steps, you need to ensure that the shell scripts (compileTests.sh and runTest.sh) has permission for 
+      execution so that it can run as a program. To see the permissions that all your files have you can run the command: <br>
+      <code>
+ls -l
+      </code>
+</p>
+      
+      <p> An <code>r</code> indicates read permission, a <code>w</code> indicates write permission, and an <code>x</code>  indicates execution permission.</p>
+      
+<p> To add execution permission to the file <code>runTest.sh</code> you need to execute this command:<br>
+<code>
+chmod u+x [script.sh]
+</code></p>
+
+
+      <p>Once you have generated the <code>.txt</code> files, to generate the input token list
+      files (<code>.bin</code> files that are required by the <code>common.s</code> file), run the following script:<br>
+<code>
+  ./compileTests.sh
+      </code>
+      </p>
+      
+<p>To compile a single <code>.txt</code> file to <code>.bin</code> format use:<br>
+<code>
+  python3 convert.py tests/TESTFILE.txt
+</code>
+</p>
+
+
+       <h3 class="greentext">Running Your Program</h3>
+
+
+<p>Place your code in a file named <code>calculator.s</code>, where the first label under the <code>.text</code> directive <b>must be</b> <code>calculator</code>, and save it under the current directory.</p>
+
+<p>To generate the output of your program for a test case use the following script:<br>
+<code>
+   ./runTest.sh YOURLABFILE TESTFILE
+      </code>
+      </p>
+      
+<p><b>Note</b>: The <code>TESTFILE</code> is the <code>.bin</code> file not the <code>.txt</code> file.</p>
+
+<p>You have two options for the location of your files:
+<ol>
+<li> You can ensure that both <code>YOURLABFILE</code> and <code>TESTFILE</code> are both in the same current directory </li>
+<li> You can specify the path to these files. For instance, if your <code>TESTFILE</code> is in the tests subdirectory, you would be running the command:<br>
+<code>
+   ./runTest.sh YOURLABFILE tests/TESTFILE
+</code>
+</ol>
+</p>
+
+
+<p>The following files are provided in the <code>Code</code> folder: 
+<ul>
+  <li> <a href="calculator.s">calculator.s</a>: Template file containing the CMPUT 229 license: <b>you must add your name to it</b></li>
+  <li> <a href="common.s">common.s</a>: File containing the main function that reads the file and calls the calculator function.</li>
+  <li> <a href="compileTests.sh">compileTests.sh</a>: script to compile all tests</li>
+  <li> <a href="convert.py">convert.py</a>: convert a text file into a binary file (used by compileTests.h).</li>
+  <li> <a href="runTest.sh">runTest.sh</a>: run a single test</li>
+  <li> <a href="example.s">runTest.sh</a>:  An example demonstrating how to format assembly code</li>
+</ul>
+</p>
+
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Fri Aug 13 05:41:33 MDT 2021 <!-- hhmts end -->
+</body> </html>
+
